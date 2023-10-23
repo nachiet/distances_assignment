@@ -12,6 +12,7 @@ lon_max= -9.1
 coef_lat=111120 # 1 degree of latitude corresponds approx to 111120 meters
 coef_lon=86672 # 1 degree of longitude corresponds approx to 86672 meters at this latitude
 
+
 def main():
     N=get_integer("Number of points: ",2,10)
     option=get_string("User provided (u) or random (r): ",["u","r"])
@@ -28,6 +29,7 @@ def main():
     print(f"{point_1} and {point_2} are farthest apart")
     plot_scatter(d)
 
+
 # input dictionary of points
 # side effect: scatter plot of points with labels
 def plot_scatter(points: dict):
@@ -42,26 +44,44 @@ def plot_scatter(points: dict):
     plt.grid(True)
     plt.show()
 
+
 # input: string (prompt to user), float (minimum value for input), float (maximum value for input)
 # output: float (user's provided value between minimum and maximum)
 # side effect: keeps asking for input until the user provides a valid input
 def get_decimal(prompt: str,Min: float, Max: float) -> float:
-    ...
+    while True:
+        try:
+            x = float(input(prompt))
+        except ValueError:
+            pass
+        else:
+            if Min <= x <= Max:
                 return x
+
 
 # input: string (prompt to user), integer (minimum value for input), integer (maximum value for input)
 # output: integer (user's provided value between minimum and maximum)
 # side effect: keeps asking for input until the user provides a valid input
 def get_integer(prompt: str,Min: int, Max: int) -> int:
-    ...
+    while True:
+        try:
+            x = int(input(prompt))
+        except ValueError:
+            pass
+        else:
+            if Min <= x <= Max:
                 return x
+                
 
 # input: string (prompt to user), list (list of strings that are acceptable values)
 # output: string (user's provided value among the values in L)
 # side effect: keeps asking for input until the user provides a valid input
 def get_string(prompt: str,L: list) -> str:
-    ...
-                return x
+    while True:
+        x = input(prompt)
+        if x in L:
+            return x
+
 
 # inputs: integer (number of points), string (option: user provided "u" or random "r")
 # output: dictionary of points. The key is the point name and the value is a tuple lon,lat in decimal degrees
@@ -71,10 +91,12 @@ def get_coordinates(N: int, option: str) -> dict:
     ...
     return d
 
+
 # input: tuple (lon,lat for 1st point), tuple (lon,lat for 2nd point)
 # output: float (approximate distance in meters between P1 and P2)
 def compute_distance(P1: tuple, P2: tuple) -> float:
     ...
+
 
 main()
 
