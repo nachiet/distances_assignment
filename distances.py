@@ -95,12 +95,12 @@ def get_coordinates(N: int, option: str) -> dict:
             c2 = get_decimal('Lat between 38.7 and 38.78: ', lat_min, lat_max)
             coords = (c1, c2)
             d.update({pname:coords})
-        if option == 'r': 
-            pname = input('Point name: ')  
+        if option == 'r':
+            pname = input('Point name: ')
             c1 = random.uniform(lon_min, lon_max)
             c2 = random.uniform(lat_min, lat_max)
             coords = (c1, c2)
-            d.update({pname:coords}) 
+            d.update({pname:coords})
     return d
 
 
