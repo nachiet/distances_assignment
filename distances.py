@@ -88,19 +88,16 @@ def get_string(prompt: str,L: list) -> str:
 # hint: call get_decimal
 def get_coordinates(N: int, option: str) -> dict:
     d=dict()
-    for i in range(0,N):
+    for i in range(N):
+        pname = input('Point name: ')
         if option == 'u':
-            pname = input('Point name: ')
-            c1 =get_decimal('Lon between -9.2 and -9.1: ', lon_min, lon_max)
-            c2 = get_decimal('Lat between 38.7 and 38.78: ', lat_min, lat_max)
-            coords = (c1, c2)
-            d.update({pname:coords})
-        if option == 'r':
-            pname = input('Point name: ')
+            c1 =get_decimal(f'Lon between {lon_min} and {lon_max}: ', lon_min, lon_max)
+            c2 = get_decimal(f'Lat between {lat_min} and {lat_max}: ', lat_min, lat_max)
+        elif option == 'r':
             c1 = random.uniform(lon_min, lon_max)
             c2 = random.uniform(lat_min, lat_max)
-            coords = (c1, c2)
-            d.update({pname:coords})
+        coords = (c1, c2)
+        d.update({pname:coords})
     return d
 
 
@@ -113,4 +110,3 @@ def compute_distance(P1: tuple, P2: tuple) -> float:
 
 
 main()
-
